@@ -1,0 +1,22 @@
+//------------------------------------------------------------------------------
+// Script Name : EdaToggleFlatLightDisplay
+// Author : Eda Hotori (@eda_hotori)
+// Description : Toggle Flat Light at Model Editor View.
+// Update :
+//      2020.5.17 Create.
+//------------------------------------------------------------------------------
+
+//main
+global proc EdaToggleFlatLightDisplay(){
+    string $curPanel = `getPanel -withFocus`;
+    //print($curPanel + "\n");
+    string $curPanelType = `getPanel -typeOf $curPanel`;
+    //print("type : " + $curPanelType + "\n");
+    if($curPanelType == "modelPanel"){
+        if(`modelEditor -q -dl $curPanel` == "flat"){
+            modelEditor -e -dl "default" $curPanel;
+        }else{
+            modelEditor -e -dl "flat" $curPanel;
+        }
+    }
+}
