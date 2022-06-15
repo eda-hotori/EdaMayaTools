@@ -1,0 +1,22 @@
+//------------------------------------------------------------------------------
+// Script Name : EdaToggleXrayDisplay
+// Author : Eda Hotori (@eda_hotori)
+// Description : Toggle Xray at Model Editor View.
+// Update :
+//      2020.5.17 Create.
+//------------------------------------------------------------------------------
+
+//main
+global proc EdaToggleXrayDisplay(){
+    string $curPanel = `getPanel -withFocus`;
+    //print($curPanel + "\n");
+    string $curPanelType = `getPanel -typeOf $curPanel`;
+    //print("type : " + $curPanelType + "\n");
+    if($curPanelType == "modelPanel"){
+        if(`modelEditor -q -xray $curPanel`){
+            modelEditor -e -xray false $curPanel;
+        }else{
+            modelEditor -e -xray true $curPanel;
+        }
+    }
+}
